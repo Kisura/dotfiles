@@ -139,10 +139,10 @@ fi
 
 echo
 echo "#----------------------------------------#"
-echo "#     Upgrading all python packages      #"
-echo "#     Keeping      pip at $pip_version         #"
-echo "#     Keeping docutils at $docutils_version         #"
-echo "#     Keeping     idna at $idna_version            #"
+echo "#     Upgraded python packages           #"
+echo "#     Kept         pip at $pip_version         #"
+echo "#     Kept    docutils at $docutils_version         #"
+echo "#     Kept        idna at $idna_version            #"
 echo "#     Please check periodically if we    #"
 echo "#     can update these packages          #"
 echo "#----------------------------------------#"

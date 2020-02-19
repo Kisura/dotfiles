@@ -18,41 +18,6 @@ alias ...='cd ~'
 
 alias my_current_ip='dig @resolver1.opendns.com ANY myip.opendns.com +short'
 
-###############################################################################
-# AWS CLI aliases
-
-# current default profile is kisura with full access
-export AWS_DEFAULT_PROFILE="kisura-full-access"
-
-awsp(){
-  echo "Available Profiles:"
-  echo "-------------------"
-  cat ~/.aws/credentials | grep '\[' | sed 's/[][]//g'
-  echo "-------------------"
-  echo
-  echo "Currently Set Profile: '$AWS_DEFAULT_PROFILE'"
-  np=$1
-  if [ -z "$np" ]; then np="default"; fi
-  echo "Setting AWS_DEFAULT_PROFILE to '$np'" 
-  export AWS_DEFAULT_PROFILE=$np
-  echo "Currently Set Profile: '$AWS_DEFAULT_PROFILE'"
-  echo
-  echo "You can define a default profile in ~/.dotfiles/system/bash_profile.symlink"
-}
-
-awscp(){
-  echo "Available Profiles:"
-  echo "-------------------"
-  cat ~/.aws/credentials | grep '\[' | sed 's/[][]//g'
-  echo "-------------------"
-  echo
-  echo "Currently Set Profile: '$AWS_DEFAULT_PROFILE'"
-  echo
-  echo "You can define a default profile in ~/.dotfiles/system/bash_profile.symlink"
-
-}
-
-alias awsecrlogin='echo "Executing \`\$(aws ecr get-login --no-include-email --region eu-central-1)\`"; $(aws ecr get-login --no-include-email --region eu-central-1)'
 
 ###############################################################################
 # Docker aliases
@@ -85,9 +50,6 @@ alias dols='docker swarm leave --force'
 alias docrma='for i in `doc ls -aq`; do doc rm -f $i; done'
 alias doirma='for i in `doi ls -aq`; do doi rm -f $i; done'
 
-alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
-alias chrome-canary="/Applications/Google\ Chrome\ Canary.app/Contents/MacOS/Google\ Chrome\ Canary"
-alias chromium="/Applications/Chromium.app/Contents/MacOS/Chromium"
 
 ###############################################################################
 # alias script for ffmpeg audio extraction
@@ -101,56 +63,7 @@ extract_audio(){
     ffmpeg -i "$1" -acodec libmp3lame -metadata TITLE="$2" OUTPUTFILE.mp3
   fi
 }
-# ###############################################################################
-# # now I take care of the prompt
-# #
-# COLOR_RED="\033[0;31m"
-# COLOR_YELLOW="\033[0;33m"
-# COLOR_GREEN="\033[0;32m"
-# COLOR_OCHRE="\033[38;5;95m"
-# COLOR_BLUE="\033[0;34m"
-# COLOR_WHITE="\033[0;37m"
-# COLOR_RESET="\033[0m"
 
-# function git_color {
-#   local git_status="$(git status 2> /dev/null)"
-
-#   if [[ ! $git_status =~ "working directory clean" ]]; then
-#     echo -e $COLOR_RED
-#   elif [[ $git_status =~ "Your branch is ahead of" ]]; then
-#     echo -e $COLOR_YELLOW
-#   elif [[ $git_status =~ "nothing to commit" ]]; then
-#     echo -e $COLOR_GREEN
-#   else
-#     echo -e $COLOR_OCHRE
-#   fi
-# }
-
-# function git_branch {
-#   local git_status="$(git status 2> /dev/null)"
-#   local on_branch="On branch ([^${IFS}]*)"
-#   local on_commit="HEAD detached at ([^${IFS}]*)"
-
-#   if [[ $git_status =~ $on_branch ]]; then
-#     local branch=${BASH_REMATCH[1]}
-#     echo "($branch)"
-#   elif [[ $git_status =~ $on_commit ]]; then
-#     local commit=${BASH_REMATCH[1]}
-#     echo "($commit)"
-#   fi
-# }
-
-# PS1="\[$COLOR_WHITE\]\n[\W]"          # basename of pwd
-# PS1+="\[\$(git_color)\]"        # colors git status
-# PS1+=" \$(git_branch)"           # prints current branch
-# PS1+="\[$COLOR_BLUE\]\$\[$COLOR_RESET\] "   # '#' for root, else '$'
-# export PS1
-
-
-# test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
-
-# setting python@2.7 
-# PATH=$PATH:/Users/tornow/Library/Python/2.7/bin:/var/root/Library/Python/2.7/bin
 
 # setting mysql-client@5.7 (at least that is the version I get when I run `mysql --version`)
 PATH=$PATH:/usr/local/opt/mysql-client/bin
@@ -160,13 +73,7 @@ PATH=$PATH:/usr/local/opt/mysql-client/bin
 export PATH="/usr/local/sbin:$PATH"
 
 
-# Set java version
-# https://www.kevinhooke.com/2017/10/05/switching-java-versions-on-mac-os/
-alias j11="export JAVA_HOME=`/usr/libexec/java_home -v 11` && export JRE_HOME=$(/usr/libexec/java_home -v 11  | sed 's/\.jdk/\.jre/') && export JRE=$(/usr/libexec/java_home -v 11  | sed 's/\.jdk/\.jre/')"
-alias j8="export JAVA_HOME=`/usr/libexec/java_home -v 1.8` && export JRE_HOME=$(/usr/libexec/java_home -v 1.8)/jre && export JRE=$(/usr/libexec/java_home -v 1.8)/jre"
-j8
-
-PATH=/Users/tornow/.dotfiles/applications/bin:$PATH
+PATH=~/.dotfiles/applications/bin:$PATH
 
 # Adding the unversioned python symlinks add the start of
 # the path
